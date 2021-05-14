@@ -37,7 +37,10 @@
             type="checkbox"
             v-model="todo.completed"
           >
-          <label class="form-check-label">
+          <label 
+            class="form-check-label"
+            :class="{todo: todo.completed}"
+          >
             {{ todo.subject }}
           </label>
         </div>
@@ -53,8 +56,12 @@ export default {
   setup() {
     const todo = ref('');
     const todos = ref([]);
-    
     const hasError = ref(false);
+    const todoStyle = {
+      textDecoration: 'line-through',
+      color: 'gray'
+    };
+
 
     const onSubmit = () => {
       if (todo.value == '') {
@@ -74,14 +81,16 @@ export default {
       todo,
       todos,
       onSubmit,
-      hasError
+      hasError,
+      todoStyle
     };
   },
 }
 </script>
 
 <style scoped>
-  .c-red {
-    color: red;
+  .todo {
+    color: gray;
+    text-decoration: line-through;
   }
 </style>
