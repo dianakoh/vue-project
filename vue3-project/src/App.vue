@@ -6,7 +6,7 @@
     <div v-if="!todos.length">
       추가된 Todo가 없습니다
     </div>
-    <TodoList :todos="todos" />
+    <TodoList :todos="todos" @toggle-todo="toggleTodo" />
   </div>
 </template>
 
@@ -23,14 +23,13 @@ export default {
   setup() {
 
     const todos = ref([]);
-    
-    const todoStyle = {
-      textDecoration: 'line-through',
-      color: 'gray'
-    };
-
+  
     const addTodo = (todo) => {
       todos.value.push(todo);
+    };
+
+    const toggleTodo = (index) => {
+      todos.value[index].completed = !todos.value[index].completed;
     };
 
     const deleteTodo = (index) => {
@@ -39,17 +38,14 @@ export default {
 
     return  {
       todos,
-      todoStyle,
       deleteTodo,
-      addTodo
+      addTodo,
+      toggleTodo
     };
   },
 }
 </script>
 
 <style scoped>
-  .todo {
-    color: gray;
-    text-decoration: line-through;
-  }
+
 </style>
