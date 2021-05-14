@@ -22,7 +22,16 @@
         </button>
       </div>
     </form>
-    {{todos}}
+    <div class="card mt-2">
+      <div class="card-body p-2">
+          {{ todos[0].subject }}
+      </div>
+    </div>
+    <div class="card mt-2">
+      <div class="card-body p-2">
+          {{ todos[1].subject }}
+      </div>
+    </div>
   </div>
 </template>
 
@@ -32,7 +41,10 @@ import {ref} from 'vue';
 export default {
   setup() {
     const todo = ref('');
-    const todos = ref([]);
+    const todos = ref([
+      {id: 1, subject: '휴대폰 사기'},
+      {id: 2, subject: '장보기'}
+    ]);
     // const greeting = (name) => {
     //     return 'Hello, ' + name;
     // };
