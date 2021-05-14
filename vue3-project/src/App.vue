@@ -1,10 +1,8 @@
 <template>
   <div class="container">
     <h2>To-Do List</h2>
-    <form 
-      @submit.prevent="onSubmit"
-      class="d-flex"
-    >
+    <form @submit.prevent="onSubmit">
+    <div class="d-flex">
       <div class="flex-grow-1 mr-2">
         <input
           class="form-control" 
@@ -21,6 +19,11 @@
           Add
         </button>
       </div>
+    </div>
+
+    <div v-show="hasError" style="color: red">
+      This field cannot be empty
+    </div>
     </form>
     <div 
       v-for="todo in todos"
@@ -44,30 +47,33 @@ export default {
       {id: 1, subject: '휴대폰 사기'},
       {id: 2, subject: '장보기'}
     ]);
-    // const greeting = (name) => {
-    //     return 'Hello, ' + name;
-    // };
-
-    // const greet = greeting(name);
+    
+    const hasError = ref(false);
 
     const onSubmit = () => {
-      todos.value.push({
-        id: Date.now(),
-        subject: todo.value
-      });
+      if (todo.value == '') {
+          hasError.value = true;
+      } else {
+        todos.value.push({
+          id: Date.now(),
+          subject: todo.value
+        });
+        hasError.value = false;
+      }
     };
 
     return  {
       todo,
       todos,
       onSubmit,
+      hasError
     };
   },
 }
 </script>
 
 <style scoped>
-  .name {
+  .c-red {
     color: red;
   }
 </style>
