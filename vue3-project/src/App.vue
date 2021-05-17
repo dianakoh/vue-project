@@ -67,8 +67,16 @@ export default {
       todos.value[index].completed = !todos.value[index].completed;
     };
 
-    const deleteTodo = (index) => {
-      todos.value.splice(index, 1);
+    const deleteTodo = async (index) => {
+      error.value = '';
+      const id = todos.value[index].id;
+      try {
+        await axios.delete('http://localhost:3000/todos/' + id);
+        todos.value.splice(index, 1);
+      } catch (err) {
+        error.value = 'Something went wrong.';
+      }
+      
     };
 
     const searchText = ref('');
