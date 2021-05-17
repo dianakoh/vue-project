@@ -37,6 +37,17 @@ export default {
 
     const todos = ref([]);
     const error = ref('');
+
+    const getTodos = async () => {
+      try {
+        const res = await axios.get('http://localhost:3000/todos');
+        todos.value = res.data;
+      } catch (err) {
+        error.value = 'Something went wrong.';
+      }
+    };
+
+    getTodos();
   
     const addTodo = async (todo) => {
       // 데이터베이스에 todo 저장
@@ -77,7 +88,8 @@ export default {
       toggleTodo,
       searchText,
       filteredTodos,
-      error
+      error,
+      getTodos
     };
   },
 }
