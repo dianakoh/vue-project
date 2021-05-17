@@ -1,5 +1,8 @@
 <template>
   <div class="container">
+    <h4>count: {{ count }}</h4>
+    <h4>double count: {{ doubleCount }}</h4>
+    <button @click="count++">Add One</button>
     <h2>To-Do List</h2>
     <TodoSimpleForm @add-todo="addTodo"/>
 
@@ -15,7 +18,7 @@
 </template>
 
 <script>
-import {ref} from 'vue';
+import {ref, computed} from 'vue';
 import TodoSimpleForm from './components/TodoSimpleForm.vue';
 import TodoList from "./components/TodoList.vue";
 
@@ -40,11 +43,18 @@ export default {
       todos.value.splice(index, 1);
     };
 
+    const count = ref(1);
+    const doubleCount = computed(() => {
+      return count.value * 2;
+    })
+
     return  {
       todos,
       deleteTodo,
       addTodo,
-      toggleTodo
+      toggleTodo,
+      count,
+      doubleCount
     };
   },
 }
