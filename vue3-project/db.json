@@ -34,21 +34,6 @@
       "subject": "7",
       "completed": false,
       "id": 10
-    },
-    {
-      "subject": "8",
-      "completed": false,
-      "id": 11
-    },
-    {
-      "subject": "test",
-      "completed": false,
-      "id": 12
-    },
-    {
-      "subject": "new todo",
-      "completed": false,
-      "id": 13
     }
   ]
 }
