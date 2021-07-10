@@ -8,7 +8,7 @@
         <div class="form-group">
           <label>Subject</label>
           <input v-model="todo.subject" type="text" class="form-control" />
-          <div v-if="subjectError" style="color: red">{{ subjectError }}</div>
+          <div v-if="subjectError" class="text-red">{{ subjectError }}</div>
         </div>
       </div>
       <div v-if="editing" class="col-6">
@@ -168,3 +168,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+.text-red {
+  color: red;
+}
+</style>
